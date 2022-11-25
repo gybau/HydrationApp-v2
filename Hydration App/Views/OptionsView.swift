@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import UIKit
 
 struct OptionsView: View {
     
@@ -22,6 +23,10 @@ struct OptionsView: View {
         case Coke = "\u{1F964}"
     }
     
+    
+    
+    
+    
     @State var selectedDrink = "Water"
     @State var selectedEmoji:String = Emojis.Water.rawValue
     @State var drinkAmount: String = ""
@@ -29,7 +34,12 @@ struct OptionsView: View {
     
     @FocusState private var amountFieldIsFocused: Bool
     
+    
+    
     var body: some View {
+        
+        
+        
         ZStack {
             Color.blue
                 .opacity(0.1)
@@ -90,6 +100,13 @@ struct OptionsView: View {
                         newDrink.name = selectedDrink
                         newDrink.emoji = selectedEmoji
                         newDrink.amount = Float(drinkAmount) ?? 0
+                        
+                        // Add todays date
+//                        let dateFormatter = DateFormatter()
+//                        dateFormatter.dateStyle = .long
+//                        dateFormatter.timeStyle = .short
+                        
+                        newDrink.dateAdded = Constants.dateFormatter.string(from: Date.now)
                         
                         switch newDrink.name {
                         case "Water":

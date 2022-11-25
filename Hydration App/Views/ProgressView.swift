@@ -31,60 +31,76 @@ struct ProgressView: View {
             Color.blue
                 .opacity(0.1)
                 .ignoresSafeArea()
-            VStack {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Progress")
-                            .font(.largeTitle)
-                        .bold()
+            
+            
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Progress")
+                                .font(.largeTitle)
+                                .bold()
+                            
+                        }
+                        Spacer()
                         
                     }
                     Spacer()
                     
-                }
-                Spacer()
-                
-                ProgressBar(progress: self.$progressValue)
-                    .frame(width: 250, height: 250)
-                    .padding(40)
-            
-                
-                Text(progressText)
-                    .font(.headline)
-                    .bold()
-                    .padding(.bottom)
-                
-                Divider()
-                
-                HStack {
-                    Text("History")
-                        .font(.largeTitle)
-                    .bold()
-                    
-                    Spacer()
-                }
-                
-                if !model.drinks.isEmpty {
+                    ProgressBar(progress: self.$progressValue)
+                        .frame(width: 250, height: 250)
+                        .padding(40)
                     
                     
-                    List {
-                        ForEach(model.drinks) { drink in
-                            ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount)
-                            
-                        }
-                        .onDelete(perform: removeDrinks)
+                    Text(progressText)
+                        .font(.headline)
+                        .bold()
+                        .padding(.bottom)
+                    
+                    Divider()
+                    
+                    HStack {
+                        Text("History")
+                            .font(.largeTitle)
+                            .bold()
+                        
+                        Spacer()
                     }
-                    .scrollContentBackground(.hidden)
-                    Spacer()
+                    
+                    if !model.drinks.isEmpty {
+                        
+                        
+                        List {
+                            ForEach(model.drinks.reversed()) { drink in
+                                ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount, dateAdded: drink.dateAdded)
+                                
+                            }
+                            .onDelete { index in
+                                // get the item from the reversed list
+                                let item = model.drinks.reversed()[index.first ?? 0]
+                                // get the index of the item from the viewModel, and remove it
+                                if let ndx = model.drinks.firstIndex(of: item) {
+                                    model.drinks.remove(at: ndx)
+                                    model.calculateProgress()
+                                    self.progressValue = model.progress
+                                    model.saveData()
+                                }
+                                
+                                
+                            }
+                        }
+                        .scrollContentBackground(.hidden)
+                        Spacer()
+                    }
+                    else {
+                        Text("No drinks have been added yet")
+                            .font(.caption)
+                            .padding()
+                        Spacer()
+                    }
                 }
-                else {
-                    Text("No drinks have been added yet")
-                        .font(.caption)
-                        .padding()
-                    Spacer()
-                }
-            }
-            .padding()
+                .padding()
+            
+            
             
             
             
@@ -97,12 +113,7 @@ struct ProgressView: View {
         
         
     }
-    func removeDrinks(at offsets: IndexSet) {
-        model.drinks.remove(atOffsets: offsets)
-        model.calculateProgress()
-        self.progressValue = model.progress
-        model.saveData()
-    }
+    
 }
 
 struct ProgressView_Previews: PreviewProvider {

@@ -17,6 +17,7 @@
 		6D413931292E2A440002CE0D /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D413930292E2A440002CE0D /* OptionsView.swift */; };
 		6D413933292E31830002CE0D /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D413932292E31830002CE0D /* ProgressBar.swift */; };
 		6D413935292E49AD0002CE0D /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D413934292E49AD0002CE0D /* ListRow.swift */; };
+		6D4139382930DC280002CE0D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4139372930DC280002CE0D /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		6D413930292E2A440002CE0D /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		6D413932292E31830002CE0D /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		6D413934292E49AD0002CE0D /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
+		6D4139372930DC280002CE0D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				6D41392D292E28220002CE0D /* Views */,
 				6D41392B292E280B0002CE0D /* ViewModels */,
 				6D41392C292E280D0002CE0D /* Models */,
+				6D4139362930DBE10002CE0D /* Helpers */,
 				6D41391D292E255A0002CE0D /* Assets.xcassets */,
 				6D41391F292E255A0002CE0D /* Preview Content */,
 			);
@@ -107,6 +110,14 @@
 				6D413934292E49AD0002CE0D /* ListRow.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		6D4139362930DBE10002CE0D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6D4139372930DC280002CE0D /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +198,7 @@
 				6D41392A292E280A0002CE0D /* Drink.swift in Sources */,
 				6D413928292E28010002CE0D /* DrinkModel.swift in Sources */,
 				6D413933292E31830002CE0D /* ProgressBar.swift in Sources */,
+				6D4139382930DC280002CE0D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
