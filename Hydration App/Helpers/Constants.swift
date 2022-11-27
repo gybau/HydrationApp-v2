@@ -12,8 +12,8 @@ struct Constants {
     
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .none
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
         return formatter
     }
 }

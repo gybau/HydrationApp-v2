@@ -20,15 +20,9 @@ class DrinkModel: ObservableObject {
         loadData()
 
 
-        let todaysDate = Constants.dateFormatter.string(from: Date.now)
-        for drink in drinks {
-            if drink.dateAdded != todaysDate {
-
-                drinks.remove(at: drinks.firstIndex(of: drink)!)
-            }
-        }
+        
         calculateProgress()
-        saveData()
+        
         
         
     }
@@ -45,11 +39,11 @@ class DrinkModel: ObservableObject {
                         return
                     }
                 }
-                self.target = 0
+                self.target = 1000
             }
         }
         self.drinks = []
-        self.target = 0
+        self.target = 1000
     }
     
     func saveData() {

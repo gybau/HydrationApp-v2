@@ -27,88 +27,102 @@ struct ProgressView: View {
     
     var body: some View {
         
-        ZStack {
-            Color.blue
-                .opacity(0.1)
-                .ignoresSafeArea()
+        
+        GeometryReader { geo in
             
-            
-                VStack {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Progress")
+            ZStack {
+                Color.blue
+                    .opacity(0.1)
+                    .ignoresSafeArea()
+                
+                ScrollView {
+                    
+                    
+                    VStack {
+                        
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Progress")
+                                    .font(.largeTitle)
+                                    .bold()
+                                
+                            }
+                            Spacer()
+                            
+                        }.padding()
+                        Spacer()
+                        
+                        ProgressBar(progress: self.$progressValue)
+                            .frame(width: 250, height: 250)
+                            .padding(40)
+                        
+                        
+                        Text(progressText)
+                            .font(.headline)
+                            .bold()
+                            .padding(.bottom)
+                        
+                        Divider()
+                        
+                        HStack {
+                            Text("History")
                                 .font(.largeTitle)
                                 .bold()
                             
+                            Spacer()
                         }
-                        Spacer()
+                        .padding([.leading, .top, .trailing])
                         
-                    }
-                    Spacer()
-                    
-                    ProgressBar(progress: self.$progressValue)
-                        .frame(width: 250, height: 250)
-                        .padding(40)
-                    
-                    
-                    Text(progressText)
-                        .font(.headline)
-                        .bold()
-                        .padding(.bottom)
-                    
-                    Divider()
-                    
-                    HStack {
-                        Text("History")
-                            .font(.largeTitle)
-                            .bold()
-                        
-                        Spacer()
-                    }
-                    
-                    if !model.drinks.isEmpty {
-                        
-                        
-                        List {
-                            ForEach(model.drinks.reversed()) { drink in
-                                ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount, dateAdded: drink.dateAdded)
-                                
+                        if !model.drinks.isEmpty {
+                            
+                            
+                            
+                            VStack {
+                                List {
+                                        ForEach(model.drinks.reversed()) { drink in
+                                            ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount, dateAdded: drink.dateAdded)
+                                            
+                                        }
+                                        .onDelete { index in
+                                            // get the item from the reversed list
+                                            let item = model.drinks.reversed()[index.first ?? 0]
+                                            // get the index of the item from the viewModel, and remove it
+                                            if let ndx = model.drinks.firstIndex(of: item) {
+                                                model.drinks.remove(at: ndx)
+                                                model.calculateProgress()
+                                                self.progressValue = model.progress
+                                                model.saveData()
+                                            }
+                                            
+                                            
+                                        }
+                                    }
+                                    .frame(width: geo.size.width - 5, height: geo.size.height - 5 , alignment: .center)
+                                    
+                                .scrollContentBackground(.hidden)
                             }
-                            .onDelete { index in
-                                // get the item from the reversed list
-                                let item = model.drinks.reversed()[index.first ?? 0]
-                                // get the index of the item from the viewModel, and remove it
-                                if let ndx = model.drinks.firstIndex(of: item) {
-                                    model.drinks.remove(at: ndx)
-                                    model.calculateProgress()
-                                    self.progressValue = model.progress
-                                    model.saveData()
-                                }
-                                
-                                
-                            }
+                            
+                            Spacer()
                         }
-                        .scrollContentBackground(.hidden)
-                        Spacer()
+                        else {
+                            Text("No drinks have been added yet")
+                                .font(.caption)
+                                .padding()
+                            Spacer()
+                        }
                     }
-                    else {
-                        Text("No drinks have been added yet")
-                            .font(.caption)
-                            .padding()
-                        Spacer()
-                    }
+                    //.padding()
+                    
                 }
-                .padding()
-            
-            
-            
-            
-            
-        }
-        .onAppear {
-            self.progressValue = 0
-            model.calculateProgress()
-            self.progressValue = model.progress
+                
+                
+                
+            }
+            .onAppear {
+                self.progressValue = 0
+                model.calculateProgress()
+                self.progressValue = model.progress
+            }
         }
         
         

@@ -10,7 +10,7 @@ import HealthKit
 
 struct LaunchView: View {
     
-    private var healthStore: HealthStore?
+    var healthStore: HealthStore?
     @State var isAuthorized: Bool
     
     init() {
@@ -28,25 +28,36 @@ struct LaunchView: View {
                 Color.blue
                     .opacity(0.1)
                     .ignoresSafeArea()
-                VStack(spacing: 20){
-                    VStack {
-                        Image(systemName: "drop.triangle")
+                VStack{
+                    Spacer()
+                    VStack(spacing: 40) {
+                        Image(systemName: "drop.fill")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100)
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.6), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .shadow(color: Color.blue.opacity(0.5), radius: 5, x: -5, y: -5)
                             
                         Text("Ready to get hydrated?")
                             .font(.headline)
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
+                        Button {
+                            if let healthStore = self.healthStore {
+                                healthStore.requestAuthorization { success in
+                                    self.isAuthorized = healthStore.isHealthKitAuthorized()
+                                }
+                            }
+                        } label: {
+                            Text("Allow Health Kit")
+                                .font(.headline)
+                        }
+                        .buttonStyle(GradientButtonStyle())
                     }
                     
-                    Button("Authorize HealthKit") {
-                        if let healthStore = self.healthStore {
-                            healthStore.requestAuthorization { success in
-                                self.isAuthorized = healthStore.isHealthKitAuthorized()
-                            }
-                            
-                        }
-                    }
+                    
+                    
+                    Spacer()
+
                 }
                 
                 
