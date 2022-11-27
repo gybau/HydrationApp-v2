@@ -13,6 +13,9 @@ struct OptionsView: View {
     
     @EnvironmentObject var model: DrinkModel
     
+    private var healthstore: HealthStore?
+    
+    
     let drinkNames = ["Water", "Tea", "Coffee", "Coke"]
     let emojis = [Emojis.Water, Emojis.Tea, Emojis.Coffee, Emojis.Coke]
     
@@ -34,7 +37,9 @@ struct OptionsView: View {
     
     @FocusState private var amountFieldIsFocused: Bool
     
-    
+    init() {
+        self.healthstore = HealthStore()
+    }
     
     var body: some View {
         
@@ -136,25 +141,51 @@ struct OptionsView: View {
                     }
                     .disabled(drinkAmount == "")
                 }
-                
-                Divider()
-                
-                Text("Change daily goal")
-                    .font(.largeTitle)
-                    .bold()
-                Text("Current: \(String(format: "%.f%", currentTarget))")
-                    .font(.title3)
-                    .bold()
+                Group {
                     
-                
-                Slider(value: $currentTarget, in: 0...10000, step: 50)
-                    .onChange(of: currentTarget) { newValue in
-                        DispatchQueue.main.async {
-                            model.target = newValue
-                            model.saveData()
+                    
+                    Divider()
+                    
+                    Text("Change daily goal")
+                        .font(.largeTitle)
+                        .bold()
+                    Text("Current: \(String(format: "%.f%", currentTarget))ml")
+                        .font(.title3)
+                        .bold()
+                    
+                    
+                    Slider(value: $currentTarget, in: 0...10000, step: 50)
+                        .onChange(of: currentTarget) { newValue in
+                            DispatchQueue.main.async {
+                                model.target = newValue
+                                model.saveData()
+                            }
+                            
+                        }
+                }
+                Group {
+                    
+                    Divider()
+                    Text("Log to Health")
+                        .font(.largeTitle)
+                        .bold()
+                    Button("Log") {
+                        if let healthstore = self.healthstore {
+                            for drink in model.drinks {
+                                healthstore.storeWater(amount: Double(drink.amount)) { success in
+                                    DispatchQueue.main.async {
+                                        model.drinks.remove(at: model.drinks.firstIndex(of: drink)!)
+                                        model.saveData()
+                                    }
+                                }
+                            }
+                            
+                            
+                            
                         }
                         
                     }
+                }
                 Spacer()
             }
             .padding()

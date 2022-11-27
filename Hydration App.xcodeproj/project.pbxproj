@@ -20,6 +20,8 @@
 		6D4139382930DC280002CE0D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4139372930DC280002CE0D /* Constants.swift */; };
 		6D41393B293123730002CE0D /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41393A293123730002CE0D /* HealthStore.swift */; };
 		6D41393E2931301B0002CE0D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41393D2931301B0002CE0D /* LaunchView.swift */; };
+		6D41394029339C130002CE0D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41393F29339C130002CE0D /* Extensions.swift */; };
+		6D41394429339E730002CE0D /* HKTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41394329339E730002CE0D /* HKTestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		6D41393A293123730002CE0D /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
 		6D41393C29312D3E0002CE0D /* Hydration App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hydration App.entitlements"; sourceTree = "<group>"; };
 		6D41393D2931301B0002CE0D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		6D41393F29339C130002CE0D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6D41394329339E730002CE0D /* HKTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 				6D413932292E31830002CE0D /* ProgressBar.swift */,
 				6D413930292E2A440002CE0D /* OptionsView.swift */,
 				6D413934292E49AD0002CE0D /* ListRow.swift */,
+				6D41394329339E730002CE0D /* HKTestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				6D4139372930DC280002CE0D /* Constants.swift */,
+				6D41393F29339C130002CE0D /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -213,9 +219,11 @@
 				6D41392F292E296F0002CE0D /* ProgressView.swift in Sources */,
 				6D413931292E2A440002CE0D /* OptionsView.swift in Sources */,
 				6D413935292E49AD0002CE0D /* ListRow.swift in Sources */,
+				6D41394029339C130002CE0D /* Extensions.swift in Sources */,
 				6D41392A292E280A0002CE0D /* Drink.swift in Sources */,
 				6D413928292E28010002CE0D /* DrinkModel.swift in Sources */,
 				6D413933292E31830002CE0D /* ProgressBar.swift in Sources */,
+				6D41394429339E730002CE0D /* HKTestView.swift in Sources */,
 				6D4139382930DC280002CE0D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

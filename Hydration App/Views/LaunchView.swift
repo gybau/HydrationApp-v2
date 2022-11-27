@@ -42,15 +42,15 @@ struct LaunchView: View {
                     Button("Authorize HealthKit") {
                         if let healthStore = self.healthStore {
                             healthStore.requestAuthorization { success in
-                                
+                                self.isAuthorized = healthStore.isHealthKitAuthorized()
                             }
-                            self.isAuthorized = healthStore.isHealthKitAuthorized()
+                            
                         }
                     }
                 }
                 
                 
-            }.animation(.easeOut)
+            }
         }
         
         

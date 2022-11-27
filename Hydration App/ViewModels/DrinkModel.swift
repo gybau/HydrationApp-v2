@@ -16,13 +16,14 @@ class DrinkModel: ObservableObject {
     @Published var target: Float = 2500
     
     init() {
+        
         loadData()
-        
-        
+
+
         let todaysDate = Constants.dateFormatter.string(from: Date.now)
         for drink in drinks {
             if drink.dateAdded != todaysDate {
-                
+
                 drinks.remove(at: drinks.firstIndex(of: drink)!)
             }
         }
