@@ -12,8 +12,7 @@ struct Constants {
     
     static var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
+        formatter.dateFormat = "HH:mm"
         return formatter
     }
 }

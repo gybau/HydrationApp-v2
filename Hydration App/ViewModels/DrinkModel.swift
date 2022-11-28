@@ -19,11 +19,7 @@ class DrinkModel: ObservableObject {
         
         loadData()
 
-
-        
         calculateProgress()
-        
-        
         
     }
     

@@ -112,7 +112,7 @@ struct OptionsView: View {
                             //                        dateFormatter.dateStyle = .long
                             //                        dateFormatter.timeStyle = .short
                             
-                            newDrink.dateAdded = Constants.dateFormatter.string(from: Date.now)
+                            newDrink.dateAdded = Date()
                             
                             switch newDrink.name {
                             case "Water":

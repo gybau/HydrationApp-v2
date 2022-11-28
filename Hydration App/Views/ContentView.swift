@@ -33,6 +33,14 @@ struct ContentView: View {
                             Text("Options")
                         }
                     }
+                GraphView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "chart.bar")
+                            Text("Chart")
+                        }
+                    }
+                
                 
             }
         

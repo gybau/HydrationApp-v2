@@ -22,6 +22,7 @@
 		6D41393E2931301B0002CE0D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41393D2931301B0002CE0D /* LaunchView.swift */; };
 		6D41394029339C130002CE0D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D41393F29339C130002CE0D /* Extensions.swift */; };
 		6D4139462933CB650002CE0D /* GradientButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4139452933CB650002CE0D /* GradientButtonStyle.swift */; };
+		6D6334562934BD13000E9751 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6334552934BD13000E9751 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		6D41393D2931301B0002CE0D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		6D41393F29339C130002CE0D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6D4139452933CB650002CE0D /* GradientButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButtonStyle.swift; sourceTree = "<group>"; };
+		6D6334552934BD13000E9751 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +118,9 @@
 			children = (
 				6D41393D2931301B0002CE0D /* LaunchView.swift */,
 				6D41391B292E25590002CE0D /* ContentView.swift */,
-				6D41392E292E296F0002CE0D /* ProgressView.swift */,
-				6D413932292E31830002CE0D /* ProgressBar.swift */,
-				6D413930292E2A440002CE0D /* OptionsView.swift */,
-				6D413934292E49AD0002CE0D /* ListRow.swift */,
-				6D4139452933CB650002CE0D /* GradientButtonStyle.swift */,
+				6D6334572934BD30000E9751 /* Progress View */,
+				6D6334582934BDC5000E9751 /* OptionsView */,
+				6D6334552934BD13000E9751 /* GraphView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -140,6 +140,25 @@
 				6D41393A293123730002CE0D /* HealthStore.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		6D6334572934BD30000E9751 /* Progress View */ = {
+			isa = PBXGroup;
+			children = (
+				6D41392E292E296F0002CE0D /* ProgressView.swift */,
+				6D413932292E31830002CE0D /* ProgressBar.swift */,
+				6D413934292E49AD0002CE0D /* ListRow.swift */,
+			);
+			path = "Progress View";
+			sourceTree = "<group>";
+		};
+		6D6334582934BDC5000E9751 /* OptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				6D413930292E2A440002CE0D /* OptionsView.swift */,
+				6D4139452933CB650002CE0D /* GradientButtonStyle.swift */,
+			);
+			path = OptionsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +240,7 @@
 				6D413931292E2A440002CE0D /* OptionsView.swift in Sources */,
 				6D413935292E49AD0002CE0D /* ListRow.swift in Sources */,
 				6D41394029339C130002CE0D /* Extensions.swift in Sources */,
+				6D6334562934BD13000E9751 /* GraphView.swift in Sources */,
 				6D41392A292E280A0002CE0D /* Drink.swift in Sources */,
 				6D413928292E28010002CE0D /* DrinkModel.swift in Sources */,
 				6D413933292E31830002CE0D /* ProgressBar.swift in Sources */,
