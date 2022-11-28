@@ -18,18 +18,15 @@ struct GraphView: View {
             Text("Daily Chart")
                 .font(.largeTitle)
                 .bold()
+            Text(Date.now.formatted(date: .long, time: .omitted))
+                .font(.headline)
             Chart {
                 BarMark(
                     x: .value("Day start", Date().startOfDay),
                     y: .value("Amount", 0))
                 ForEach(model.drinks) { drink in
                     
-//                    BarMark(
-//                        xStart: .value("Date", Date().startOfDay),
-//                        xEnd: .value("Date", Date().endOfDay),
-//                        y: .value("Amount", drink.amount))
-                    
-                    BarMark(
+                    LineMark(
                         x: .value("Date", drink.dateAdded),
                         y: .value("Amount", drink.amount))
                 }
@@ -37,11 +34,14 @@ struct GraphView: View {
                     x: .value("Day end", Date().endOfDay),
                     y: .value("Amount", 0))
             }
-            .padding()
+            .padding(.bottom, 100)
+            .padding(.top, 100)
+            
             
             Spacer()
             
         }
+        .padding()
         
     }
 }
