@@ -18,8 +18,10 @@ struct GraphView: View {
             Text("Daily Chart")
                 .font(.largeTitle)
                 .bold()
+                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
             Text(Date.now.formatted(date: .long, time: .omitted))
                 .font(.headline)
+                
             Chart {
                 BarMark(
                     x: .value("Day start", Date().startOfDay),

@@ -27,35 +27,30 @@ struct ProgressView: View {
     
     var body: some View {
         
-        
         GeometryReader { geo in
-            
             ZStack {
                 Color.blue
                     .opacity(0.1)
                     .ignoresSafeArea()
-                
                 ScrollView {
-                    
-                    
                     VStack {
-                        
                         HStack {
                             VStack(alignment: .leading) {
                                 Text("Progress")
                                     .font(.largeTitle)
                                     .bold()
-                                
+                                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
                             }
                             Spacer()
                             
-                        }.padding()
+                        }
+                        .padding()
+                        
                         Spacer()
                         
                         ProgressBar(progress: self.$progressValue)
                             .frame(width: 250, height: 250)
                             .padding(40)
-                        
                         
                         Text(progressText)
                             .font(.headline)
@@ -68,40 +63,33 @@ struct ProgressView: View {
                             Text("History")
                                 .font(.largeTitle)
                                 .bold()
+                                .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
                             
                             Spacer()
                         }
                         .padding([.leading, .top, .trailing])
                         
                         if !model.drinks.isEmpty {
-                            
-                            
-                            
                             VStack {
                                 List {
-                                        ForEach(model.drinks.reversed()) { drink in
-                                            ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount, dateAdded: drink.dateAdded)
-                                            
-                                        }
-                                        .onDelete { index in
-                                            // get the item from the reversed list
-                                            let item = model.drinks.reversed()[index.first ?? 0]
-                                            // get the index of the item from the viewModel, and remove it
-                                            if let ndx = model.drinks.firstIndex(of: item) {
-                                                model.drinks.remove(at: ndx)
-                                                model.calculateProgress()
-                                                self.progressValue = model.progress
-                                                model.saveData()
-                                            }
-                                            
-                                            
+                                    ForEach(model.drinks.reversed()) { drink in
+                                        ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount, dateAdded: drink.dateAdded)
+                                    }
+                                    .onDelete { index in
+                                        // get the item from the reversed list
+                                        let item = model.drinks.reversed()[index.first ?? 0]
+                                        // get the index of the item from the viewModel, and remove it
+                                        if let ndx = model.drinks.firstIndex(of: item) {
+                                            model.drinks.remove(at: ndx)
+                                            model.calculateProgress()
+                                            self.progressValue = model.progress
+                                            model.saveData()
                                         }
                                     }
-                                    .frame(width: geo.size.width - 5, height: geo.size.height - 5 , alignment: .center)
-                                    
+                                }
+                                .frame(width: geo.size.width - 5, height: geo.size.height - 5 , alignment: .center)
                                 .scrollContentBackground(.hidden)
                             }
-                            
                             Spacer()
                         }
                         else {
@@ -111,12 +99,7 @@ struct ProgressView: View {
                             Spacer()
                         }
                     }
-                    //.padding()
-                    
                 }
-                
-                
-                
             }
             .onAppear {
                 self.progressValue = 0
@@ -124,10 +107,7 @@ struct ProgressView: View {
                 self.progressValue = model.progress
             }
         }
-        
-        
     }
-    
 }
 
 struct ProgressView_Previews: PreviewProvider {

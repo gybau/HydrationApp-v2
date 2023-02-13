@@ -55,6 +55,7 @@ struct OptionsView: View {
                     Text("Add drink")
                         .font(.largeTitle)
                         .bold()
+                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
                     
                     
                     
@@ -150,6 +151,7 @@ struct OptionsView: View {
                         Text("Daily goal")
                             .font(.largeTitle)
                             .bold()
+                            .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
                         HStack {
                             Text("Current: \(String(format: "%.f%", currentTarget))ml")
                                 .font(.caption)
@@ -199,6 +201,7 @@ struct OptionsView: View {
                                 
                                 Text("Note: Logging to health clears all local data")
                                     .font(.headline)
+                                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
                             }
                             
                             Spacer()

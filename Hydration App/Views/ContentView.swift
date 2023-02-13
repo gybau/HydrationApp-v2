@@ -40,10 +40,7 @@ struct ContentView: View {
                             Text("Chart")
                         }
                     }
-                
-                
             }
-        
     }
 }
 
