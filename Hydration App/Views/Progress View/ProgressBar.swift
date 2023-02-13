@@ -15,6 +15,7 @@ struct ProgressBar: View {
     //@Namespace var namespace
     
     var body: some View {
+        
         ZStack {
                     Circle()
                         .stroke(lineWidth: 40)

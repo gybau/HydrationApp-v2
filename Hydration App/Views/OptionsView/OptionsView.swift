@@ -13,9 +13,6 @@ struct OptionsView: View {
     
     @EnvironmentObject var model: DrinkModel
     
-    private var healthstore: HealthStore?
-    
-    
     let drinkNames = ["Water", "Tea", "Coffee", "Coke"]
     let emojis = [Emojis.Water, Emojis.Tea, Emojis.Coffee, Emojis.Coke]
     
@@ -36,10 +33,6 @@ struct OptionsView: View {
     @State var currentTarget: Float = 1000
     
     @FocusState private var amountFieldIsFocused: Bool
-    
-    init() {
-        self.healthstore = HealthStore()
-    }
     
     var body: some View {
         
@@ -182,16 +175,7 @@ struct OptionsView: View {
                             Spacer()
                             VStack {
                                 Button {
-                                    if let healthstore = self.healthstore {
-                                        for drink in model.drinks {
-                                            healthstore.storeWater(amount: Double(drink.amount)) { success in
-                                                DispatchQueue.main.async {
-                                                    model.drinks.remove(at: model.drinks.firstIndex(of: drink)!)
-                                                    model.saveData()
-                                                }
-                                            }
-                                        }
-                                    }
+                                    
                                 } label: {
                                     Text("Log to health")
                                         .font(.headline)

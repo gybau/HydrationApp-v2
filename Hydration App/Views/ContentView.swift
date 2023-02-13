@@ -9,15 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    
-    
     var body: some View {
-        
-        
-        
-        
             TabView {
-                
                 ProgressView()
                     .tabItem {
                         VStack {
@@ -25,19 +18,11 @@ struct ContentView: View {
                             Text("Hydration")
                         }
                     }
-                    
                 OptionsView()
                     .tabItem {
                         VStack {
                             Image(systemName: "gear")
                             Text("Options")
-                        }
-                    }
-                GraphView()
-                    .tabItem {
-                        VStack {
-                            Image(systemName: "chart.bar")
-                            Text("Chart")
                         }
                     }
             }

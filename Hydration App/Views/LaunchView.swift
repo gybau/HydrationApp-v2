@@ -10,13 +10,7 @@ import HealthKit
 
 struct LaunchView: View {
     
-    var healthStore: HealthStore?
-    @State var isAuthorized: Bool
-    
-    init() {
-        healthStore = HealthStore()
-        self.isAuthorized = healthStore?.isHealthKitAuthorized() ?? false
-    }
+    @State var isAuthorized = true
     
     var body: some View {
         
@@ -42,30 +36,18 @@ struct LaunchView: View {
                             .font(.headline)
                             .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
                         Button {
-                            if let healthStore = self.healthStore {
-                                healthStore.requestAuthorization { success in
-                                    self.isAuthorized = healthStore.isHealthKitAuthorized()
-                                }
-                            }
+                            
                         } label: {
                             Text("Allow Health Kit")
                                 .font(.headline)
                         }
                         .buttonStyle(GradientButtonStyle())
                     }
-                    
-                    
-                    
                     Spacer()
 
                 }
-                
-                
             }
         }
-        
-        
-        
     }
 }
 
