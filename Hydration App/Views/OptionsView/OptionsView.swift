@@ -95,38 +95,9 @@ struct OptionsView: View {
                         Button {
                             amountFieldIsFocused = false
                             
+                            guard let amountAsInt = Int(drinkAmount) else { return }
                             
-                            var newDrink = Drink()
-                            newDrink.name = selectedDrink
-                            newDrink.emoji = selectedEmoji
-                            newDrink.amount = Float(drinkAmount) ?? 0
-                            
-                            // Add todays date
-                            //                        let dateFormatter = DateFormatter()
-                            //                        dateFormatter.dateStyle = .long
-                            //                        dateFormatter.timeStyle = .short
-                            
-                            newDrink.dateAdded = Date()
-                            
-                            switch newDrink.name {
-                            case "Water":
-                                newDrink.hydrationIndex = 1
-                            case "Tea":
-                                newDrink.hydrationIndex = 1.1
-                            case "Coffee":
-                                newDrink.hydrationIndex = 0.85
-                            case "Coke":
-                                newDrink.hydrationIndex = 1.15
-                            default:
-                                newDrink.hydrationIndex = 1
-                                
-                            }
-                            
-                            DispatchQueue.main.async {
-                                model.drinks.append(newDrink)
-                                model.saveData()
-                                
-                            }
+                            model.addDrink(name: selectedDrink, emoji: selectedEmoji, amount: amountAsInt)
                             self.drinkAmount = ""
                             
                             
@@ -161,37 +132,16 @@ struct OptionsView: View {
                             .onChange(of: currentTarget) { newValue in
                                 DispatchQueue.main.async {
                                     model.target = newValue
-                                    model.saveData()
                                 }
-                                
+                                Task {
+                                    try await NetworkManager.shared.updateUser(name: nil, target: newValue)
+                                }
                             }
                     }
                     Group {
                         
                         Divider()
                         Spacer()
-                        
-                        HStack {
-                            Spacer()
-                            VStack {
-                                Button {
-                                    
-                                } label: {
-                                    Text("Log to health")
-                                        .font(.headline)
-                                    
-                                }
-                                .buttonStyle(GradientButtonStyle())
-                                
-                                Text("Note: Logging to health clears all local data")
-                                    .font(.headline)
-                                    .foregroundStyle(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
-                            }
-                            
-                            Spacer()
-                        }
-                        
-                        
                     }
                     Spacer()
                 }

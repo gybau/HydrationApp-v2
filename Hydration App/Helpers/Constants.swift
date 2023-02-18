@@ -15,4 +15,16 @@ struct Constants {
         formatter.dateFormat = "HH:mm"
         return formatter
     }
+    
+    static let baseAuthUrl = "http://localhost:3000/auth"
+    static let baseDrinkUrl = "http://localhost:3000/drinks"
+}
+
+enum NetworkError: Error {
+    case badJson
+    case badUrl
+    case badRequest
+    case badResponse
+    case internalServerError
+    case badJWTToken
 }

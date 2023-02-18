@@ -12,7 +12,7 @@ struct ListRow: View {
     var name: String
     var emoji: String
     var amount: Float
-    var dateAdded: Date
+    var createdAt: Date
     
     var body: some View {
         HStack {
@@ -26,7 +26,7 @@ struct ListRow: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-            Text(Constants.dateFormatter.string(from: dateAdded))
+            Text(Constants.dateFormatter.string(from: createdAt))
                 .font(.caption)
                 
         }
@@ -35,6 +35,6 @@ struct ListRow: View {
 
 struct ListRow_Previews: PreviewProvider {
     static var previews: some View {
-        ListRow(name: "Water", emoji: "\u{1F4A7}", amount: 500, dateAdded: Date())
+        ListRow(name: "Water", emoji: "\u{1F4A7}", amount: 500, createdAt: Date())
     }
 }

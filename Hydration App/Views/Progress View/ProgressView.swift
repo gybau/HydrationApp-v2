@@ -73,17 +73,21 @@ struct ProgressView: View {
                             VStack {
                                 List {
                                     ForEach(model.drinks.reversed()) { drink in
-                                        ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount, dateAdded: drink.dateAdded)
+                                        ListRow(name: drink.name, emoji: drink.emoji, amount: drink.amount, createdAt: drink.createdAt)
                                     }
                                     .onDelete { index in
                                         // get the item from the reversed list
                                         let item = model.drinks.reversed()[index.first ?? 0]
                                         // get the index of the item from the viewModel, and remove it
                                         if let ndx = model.drinks.firstIndex(of: item) {
-                                            model.drinks.remove(at: ndx)
-                                            model.calculateProgress()
-                                            self.progressValue = model.progress
-                                            model.saveData()
+                                            Task {
+                                                let drinkId = model.drinks[ndx].id
+                                                try await NetworkManager.shared.deleteDrink(drinkId: drinkId)
+                                                model.drinks.remove(at: ndx)
+                                                model.calculateProgress()
+                                                self.progressValue = model.progress
+                                            }
+                                            
                                         }
                                     }
                                 }
@@ -101,11 +105,14 @@ struct ProgressView: View {
                     }
                 }
             }
-            .onAppear {
+        }.onAppear{
+            Task {
+                try await model.loadData()
                 self.progressValue = 0
                 model.calculateProgress()
                 self.progressValue = model.progress
             }
+            
         }
     }
 }
