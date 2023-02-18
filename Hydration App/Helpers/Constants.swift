@@ -16,8 +16,8 @@ struct Constants {
         return formatter
     }
     
-    static let baseAuthUrl = "http://localhost:3000/auth"
-    static let baseDrinkUrl = "http://localhost:3000/drinks"
+    static let baseAuthUrl = "https://hydration-app-backend.vercel.app/auth"
+    static let baseDrinkUrl = "https://hydration-app-backend.vercel.app/drinks"
 }
 
 enum NetworkError: Error {
